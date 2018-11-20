@@ -29,7 +29,7 @@ public class mainactivity extends AppCompatActivity implements RequestOperator.R
     private ModelPost publication;
     private List<ModelPost> publications;
     private IndicatingView indicator;
-
+    private NewIndication indicatorNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class mainactivity extends AppCompatActivity implements RequestOperator.R
         bodyText = (TextView) findViewById(R.id.body_text);
 
         indicator = (IndicatingView)findViewById(R.id.generated_graphic);
-
+        indicatorNumber = (NewIndication)findViewById(R.id.indicating);
     }
 
     View.OnClickListener requestButtonClicked = new View.OnClickListener() {
@@ -88,16 +88,10 @@ public class mainactivity extends AppCompatActivity implements RequestOperator.R
 
 
     @Override
-    public void success(ModelPost publications){
-        this.publication = publication;
-        setIndicatorStatus(IndicatingView.SUCCESS);
-        updatePublication();
-    }
-
-    @Override
     public void success(List<ModelPost> publications){
         this.publications = publications;
         setIndicatorStatus(IndicatingView.SUCCESS);
+        number();
         updatePublication();
     }
 
@@ -106,6 +100,18 @@ public class mainactivity extends AppCompatActivity implements RequestOperator.R
         this.publication = null;
         setIndicatorStatus(IndicatingView.FAILED);
         updatePublication();
+    }
+
+    public void number(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (publications != null){
+                indicatorNumber.setState(publications.size());
+                indicatorNumber.invalidate();
+                }
+            }
+        });
     }
 
     public void setIndicatorStatus(final int status){
@@ -118,11 +124,8 @@ public class mainactivity extends AppCompatActivity implements RequestOperator.R
         });
     }
 
-    @Override
-    public void number(ModelPost publications){
-        this.publication = publication;
-        setIndicatorStatus(IndicatingView.SUCCESS);
-        updatePublication();
-    }
+
+
+
 
 }

@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">QR reader</string>
-    <string name="please_focus_on_qr_code">Please focus on QR code</string>
+    <string name="app_name">laboras_2</string>
+    <string name="send_request">send_request</string>
 </resources>

@@ -19,12 +19,8 @@ public class RequestOperator extends Thread {
 
     public interface RequestOperatorListener {
         void success(List<ModelPost> publications);
-
-        void success(ModelPost publications);
-
         void failed(int responseCode);
 
-        void number(ModelPost publications);
     }
 
     private RequestOperatorListener listener;
@@ -148,6 +144,8 @@ public class RequestOperator extends Thread {
         if (listener != null)
             listener.success(publications);
     }
+
+
 }
 
 

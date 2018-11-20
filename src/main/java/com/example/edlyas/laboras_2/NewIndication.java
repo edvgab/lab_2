@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class NewIndication extends View {
+   public int state = 0;
 
     public NewIndication (Context context) {super(context);}
     public NewIndication(Context context, AttributeSet attrs)
@@ -20,6 +21,9 @@ public class NewIndication extends View {
         super(context, attrs, defStyleAttr);
     }
 
+   public int getState(){return state;}
+
+    public void setState(int state) {this.state = state;}
 
 
 @Override
@@ -30,12 +34,11 @@ public class NewIndication extends View {
     int height = getHeight();
     Paint paint;
     paint = new Paint();
-
     paint.setColor(Color.BLACK);
     canvas.drawCircle(width/2, height/2, 200,paint);
     paint.setColor(Color.WHITE);
     paint.setTextSize(150);
-   canvas.drawText("3", width/3, height/2, paint);
+    canvas.drawText(String.valueOf(state), width/3, height/2, paint);
 
-}
+    }
 }
